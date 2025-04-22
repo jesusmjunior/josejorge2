@@ -1,0 +1,680 @@
+/* Variáveis de Cores */
+:root {
+    --color-primary: #3A7563;         /* Verde institucional */
+    --color-complementary: #5D4037;   /* Marrom escuro */
+    --color-accent: #D4B464;          /* Dourado */
+    --color-background: #F5EED6;      /* Bege suave */
+    --color-background-alt: #E8F5E9;  /* Verde claro */
+    --color-white: #FFFFFF;
+    --color-black: #212121;
+    --color-overlay: rgba(58, 117, 99, 0.8); /* Verde institucional com transparência */
+}
+
+/* Reset e Estilos Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: var(--color-complementary);
+    overflow: hidden;
+    background-color: #f0f0f0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Container de Apresentação */
+.presentation-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
+    max-height: 800px;
+    margin: 0 auto;
+    background-color: var(--color-white);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Controles de Navegação */
+.nav-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 8px 15px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-button {
+    border: none;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: var(--color-complementary);
+}
+
+.nav-button span {
+    display: block;
+    line-height: 1;
+}
+
+#slideCounter {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: var(--color-complementary);
+}
+
+/* Botão de Tela Cheia */
+.fullscreen-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    color: var(--color-primary);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.fullscreen-button:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+/* Container de Slides */
+#slides {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Estilos Comuns dos Slides */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide.active {
+    opacity: 1;
+    z-index: 10;
+}
+
+.slide-content {
+    width: 100%;
+    height: 100%;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 60px;
+    color: var(--color-primary);
+    margin-bottom: 30px;
+    position: relative;
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    color: var(--color-complementary);
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 32px;
+    color: var(--color-accent);
+    margin-bottom: 30px;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 28px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-container.small {
+    margin-top: auto;
+    align-self: flex-end;
+}
+
+.logo-container.medium {
+    margin-top: 30px;
+}
+
+.logo-container.large {
+    margin: 40px 0;
+}
+
+.logo {
+    max-width: 100%;
+    height: auto;
+}
+
+.logo-container.small .logo {
+    max-width: 150px;
+}
+
+.logo-container.medium .logo {
+    max-width: 200px;
+}
+
+.logo-container.large .logo {
+    max-width: 250px;
+}
+
+.content-box {
+    border: 1px solid var(--color-accent);
+    padding: 30px;
+    margin: 20px 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.content-box.wide {
+    max-width: 90%;
+}
+
+.bordered-image {
+    border: 1px solid var(--color-accent);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    height: auto;
+}
+
+.content-with-image {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.content-with-image .text-content {
+    flex: 2;
+}
+
+.content-with-image .image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.split-content {
+    display: flex;
+    gap: 40px;
+    height: 100%;
+}
+
+.left-side, .right-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-side-wide {
+    flex: 2;
+}
+
+.right-side-narrow {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icons-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+
+.icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.icon img {
+    width: 80px;
+    height: 80px;
+}
+
+.icon span {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: var(--color-complementary);
+}
+
+.projects-list {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.projects-list li {
+    font-family: 'Roboto', sans-serif;
+    font-size: 26px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.icon-bullet {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: var(--color-accent);
+    margin-right: 15px;
+    border-radius: 50%;
+}
+
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.partner-logo {
+    max-width: 100%;
+    height: auto;
+}
+
+.content-with-graph {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.content-with-graph .text-content {
+    flex: 2;
+}
+
+.graph-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.graph {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Estilos Específicos dos Slides */
+
+/* Slide 1: Capa */
+.capa {
+    background-color: var(--color-background);
+    background-image: linear-gradient(135deg, rgba(245, 238, 214, 0.9) 0%, rgba(245, 238, 214, 0.6) 100%), url('assets/texture-bg.png');
+    background-size: cover;
+    justify-content: space-between;
+}
+
+.capa .text-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.capa h1 {
+    font-size: 72px;
+    margin-bottom: 40px;
+}
+
+/* Slide 2: A COGEX */
+.a-cogex {
+    background-color: var(--color-background-alt);
+    background-image: linear-gradient(135deg, rgba(232, 245, 233, 0.9) 0%, rgba(232, 245, 233, 0.6) 100%), url('assets/texture-bg.png');
+    background-size: cover;
+}
+
+/* Slide 3: Objetivo da Apresentação */
+.objetivo {
+    background-color: var(--color-background);
+    background-image: linear-gradient(135deg, rgba(245, 238, 214, 0.9) 0%, rgba(245, 238, 214, 0.6) 100%), url('assets/texture-bg.png');
+    background-size: cover;
+}
+
+.objetivo .content-box {
+    max-width: 60%;
+}
+
+.objetivo .image-container {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35%;
+}
+
+/* Slide 4: Importância da Corregedoria */
+.importancia {
+    background: linear-gradient(90deg, var(--color-primary) 40%, var(--color-background) 40%);
+}
+
+.importancia h1 {
+    color: var(--color-white);
+    margin-bottom: 40px;
+}
+
+/* Slide 5: Contexto Atual */
+.contexto {
+    background-color: var(--color-background);
+    background-image: linear-gradient(135deg, rgba(245, 238, 214, 0.9) 0%, rgba(245, 238, 214, 0.6) 100%), url('assets/texture-bg.png');
+    background-size: cover;
+}
+
+.contexto h1 {
+    position: relative;
+}
+
+.contexto h1::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 150px;
+    height: 4px;
+    background-color: var(--color-accent);
+}
+
+.contexto-image {
+    max-width: 90%;
+    height: auto;
+}
+
+/* Slide 6: Estrutura da COGEX */
+.estrutura {
+    background-image: linear-gradient(rgba(58, 117, 99, 0.7), rgba(58, 117, 99, 0.7)), url('assets/predio-cogex.jpg');
+    background-size: cover;
+    background-position: center;
+    justify-content: space-between;
+}
+
+.estrutura h1 {
+    color: var(--color-white);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.estrutura-box {
+    margin-top: auto;
+    margin-bottom: 40px;
+}
+
+/* Slide 7: Corregedor-Geral e Sua Equipe */
+.equipe {
+    background: linear-gradient(90deg, #e0d1bb 0%, var(--color-background) 100%);
+}
+
+.equipe h1::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 150px;
+    height: 4px;
+    background-color: var(--color-accent);
+}
+
+/* Slide 8: Funções das Coordenadorias */
+.funcoes {
+    background-color: var(--color-background);
+    background-image: linear-gradient(135deg, rgba(245, 238, 214, 0.9) 0%, rgba(245, 238, 214, 0.6) 100%), url('assets/texture-bg.png');
+    background-size: cover;
+}
+
+/* Slide 9: Iniciativas e Projetos */
+.iniciativas {
+    background-color: var(--color-background);
+    text-align: center;
+}
+
+.iniciativas h1 {
+    margin-bottom: 40px;
+}
+
+/* Slide 10: Projetos em Andamento */
+.projetos {
+    background-color: var(--color-background);
+    background-image: linear-gradient(135deg, rgba(245, 238, 214, 0.9) 0%, rgba(245, 238, 214, 0.6) 100%), url('assets/texture-bg.png');
+    background-size: cover;
+}
+
+.projetos h1 {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.projetos h1::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-accent);
+}
+
+/* Slide 11: Parcerias Interinstitucionais */
+.parcerias {
+    background: linear-gradient(90deg, var(--color-background) 0%, #e0d1bb 100%);
+}
+
+/* Slide 12: Resultados e Impactos Sociais */
+.resultados {
+    background-color: var(--color-background);
+    background-image: linear-gradient(135deg, rgba(245, 238, 214, 0.9) 0%, rgba(245, 238, 214, 0.6) 100%), url('assets/texture-bg.png');
+    background-size: cover;
+}
+
+.resultados h1 {
+    position: relative;
+}
+
+.resultados h1::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 150px;
+    height: 4px;
+    background-color: var(--color-primary);
+}
+
+/* Slide 13: Encerramento */
+.encerramento {
+    background-color: var(--color-background-alt);
+    background-image: linear-gradient(135deg, rgba(232, 245, 233, 0.9) 0%, rgba(232, 245, 233, 0.6) 100%), url('assets/texture-bg.png');
+    background-size: cover;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.encerramento h1 {
+    color: var(--color-complementary);
+    font-size: 72px;
+    margin-bottom: 20px;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.slide.active h1 {
+    animation: slideInLeft 0.5s ease forwards;
+}
+
+.slide.active p, .slide.active .content-box {
+    animation: fadeIn 0.8s ease forwards;
+    animation-delay: 0.2s;
+}
+
+.slide.active .image-container, .slide.active .graph-container {
+    animation: slideInRight 0.8s ease forwards;
+    animation-delay: 0.3s;
+}
+
+.slide.active .icons-container, .slide.active .partners-grid {
+    animation: slideInUp 0.8s ease forwards;
+    animation-delay: 0.4s;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .presentation-container {
+        max-width: 100%;
+        max-height: 100%;
+    }
+    
+    h1 {
+        font-size: 50px;
+    }
+    
+    h2 {
+        font-size: 36px;
+    }
+    
+    h3 {
+        font-size: 28px;
+    }
+    
+    p {
+        font-size: 24px;
+    }
+    
+    .slide-content {
+        padding: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 42px;
+    }
+    
+    h2 {
+        font-size: 30px;
+    }
+    
+    h3 {
+        font-size: 24px;
+    }
+    
+    p {
+        font-size: 20px;
+    }
+    
+    .content-with-image, .split-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .slide-content {
+        padding: 30px;
+    }
+    
+    .importancia {
+        background: var(--color-background);
+    }
+    
+    .importancia h1 {
+        color: var(--color-primary);
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 36px;
+    }
+    
+    p {
+        font-size: 18px;
+    }
+    
+    .slide-content {
+        padding: 20px;
+    }
+    
+    .nav-controls {
+        bottom: 10px;
+    }
+    
+    .icons-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+    position
